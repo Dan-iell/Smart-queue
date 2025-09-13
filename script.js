@@ -26,10 +26,8 @@ form.addEventListener("submit", (e) => {
 });
 
 function updateUI() {
-  // Update Now Serving
   nowServing.textContent = current || "No one yet";
 
-  // Update Waiting List with highlights
   waitingList.innerHTML = queue
     .map((person, index) => {
       const isUser = person === userName;
@@ -40,7 +38,7 @@ function updateUI() {
                   ? "bg-green-100 text-green-700 font-bold border border-green-400"
                   : "bg-yellow-100 text-yellow-700 font-semibold border border-yellow-300"
                 : "bg-gray-100 text-gray-700"
-            }">
+            } text-sm sm:text-base">
               ${index + 1}. ${person} 
               ${
                 isUser
@@ -53,7 +51,6 @@ function updateUI() {
     })
     .join("");
 
-  // Update Progress Bar
   if (queue.length > 0) {
     let position = queue.indexOf(userName) + 1;
     if (position > 0) {
@@ -72,7 +69,6 @@ function updateUI() {
   }
 }
 
-// Example: Simulate serving
 setInterval(() => {
   if (!current && queue.length > 0) {
     current = queue.shift();
